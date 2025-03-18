@@ -14,10 +14,14 @@ import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
   const { data } = useData();
-  const last = data ? data.events[data.events.length - 1] : null;
-  console.log(last);
-  // Les 3 lignes au dessus remplacent celle en dessous
-  // const { last } = useData();
+
+  // Vérifie si les données existent et tri les événements par date décroissante
+  const last = data && data.events.length > 0
+    ? data.events.sort((a, b) => new Date(b.date) - new Date(a.date))[0]
+    : null;
+
+  console.log(last); // Vérifie que 'last' contient bien l'événement le plus récent
+
   return (
     <>
       <header>
@@ -62,7 +66,7 @@ const Page = () => {
         </section>
         <section className="PeoplesContainer" id="notre-equipe">
           <h2 className="Title">Notre équipe</h2>
-          <p>Une équipe d’experts dédiés à l’ogranisation de vos événements</p>
+          <p>Une équipe d’experts dédiés à l’organisation de vos événements</p>
           <div className="ListContainer">
             <PeopleCard
               imageSrc="/images/stephanie-liverani-Zz5LQe-VSMY-unsplash.png"

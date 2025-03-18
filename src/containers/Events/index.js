@@ -17,17 +17,17 @@ const EventList = () => {
   if (error) return <div>Une erreur est survenue.</div>;
   if (!data || !data.events) return <div>Chargement en cours...</div>;
 
-  // ✅ On trie les events uniquement une fois que data.events existe
+  // ✅ Je trie les events uniquement une fois que data.events existe
   const sortedEvents = [...data.events].sort(
     (a, b) => new Date(a.date) - new Date(b.date)
   );
 
-  // ✅ On filtre ensuite par type (si un type est sélectionné)
+  // ✅ Je filtre ensuite par type (si un type est sélectionné)
   const filteredEvents = sortedEvents.filter((event) =>
     type ? event.type === type : true
   );
 
-  // ✅ Pagination : on garde seulement les events de la page en cours
+  // ✅ Pagination : je garde seulement les events de la page en cours
   const paginatedEvents = filteredEvents.slice(
     (currentPage - 1) * PER_PAGE,
     currentPage * PER_PAGE

@@ -19,7 +19,7 @@ const EventList = () => {
 
   // ✅ Je trie les events uniquement une fois que data.events existe
   const sortedEvents = [...data.events].sort(
-    (a, b) => new Date(a.date) - new Date(b.date)
+    (a, b) => new Date(b.date) - new Date(a.date)
   );
 
   // ✅ Je filtre ensuite par type (si un type est sélectionné)
